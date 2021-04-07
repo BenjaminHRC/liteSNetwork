@@ -8,7 +8,7 @@ $bdd = $connection->connect();
 //var_dump($bdd);
 
 // On récupère tout le contenu de la table 
-$reponse = $bdd->query('SELECT * FROM `users` ');
+/*$reponse = $bdd->query('SELECT * FROM `users` ');
 //var_dump($reponse);
 
 $donnees = $reponse->fetch();
@@ -22,7 +22,9 @@ $loginPassword = $donnees['password'];
 
 echo $loginNom . $loginPrenom . $loginEmail . $loginUsername . $loginPassword;
 
-$reponse->closeCursor();
+
+*/
+//$reponse->closeCursor();
 
 ?>
 
@@ -43,28 +45,59 @@ $reponse->closeCursor();
         <div class="col-6">
             <p>blablabla</p>
         </div>
-        <div class="col-6">
-            <div class="">
-                <fieldset style="max-width: 50%; margin: auto;">
-                    <legend>Login</legend>
-                    <form action="../../Model/login.php" method="post">
-                        <div class="mb-3">
-                            <label>Username/email</label>
-                            <input id="username" type="text" name="login_username" placeholder="Enter your username...">
-                        </div>
-                        <div>
-                            <label>Password</label>
-                            <input id="password" type="password" name="login_password" placeholder="Enter your password...">
-                        </div>
-                        <button type="submit" id="connection" class="ml-5">Connection</button>
-                        <hr>
-                        <button type="button" id="register" class="ml-5">Creer un compte</button>
-                    </form>
-                </fieldset>
+        <div class="col-6" style="background-color: #F2F2F2; height: 772px;">
+            <div style="margin-top: 26%;">
+                <div class="card" style="max-width: 50%; margin: auto;">
+                    <fieldset class="p-3">
+                        <legend class="text-center mt-3">Login</legend>
+                        <form action="" method="post">
+                            <div class="mb-3 text-center">
+                                <input id="login_username" class="w-100" type="text" name="login_username" placeholder="Username">
+                            </div>
+                            <div class="text-center">
+                                <input id="login_password" class="w-100" type="password" name="login_password" placeholder="Password">
+                            </div>
+                            <div class="text-center ml-5 mt-3">
+                                <input type="submit" name="loginBtnConnexion" id="connection" class="btn btn-info" value="Connexion">
+                            </div>
+                            <hr>
+                            <div class="text-center ml-5">
+                                <button type="button" id="loginRegister" class="btn btn-success">Créer un compte</button>
+                            </div>
+                        </form>
+                    </fieldset>
+                </div>
             </div>
         </div>
     </div>
-    </div>
+    <?= require('../Element/Modal/loginModal.php'); ?>
+
+    <?php
+    if (isset($_POST["registerForm"])) {
+        if (!empty($_POST['register_name']) && !empty($_POST['register_firstname']) && !empty($_POST['register_mail']) && !empty($_POST['register_username']) && !empty($_POST['register_password']) && !empty($_POST['register_password2'])) {
+            $firstname = htmlspecialchars($_POST['register_name']);
+            $name = htmlspecialchars($_POST['register_firstname']);
+            $mail = htmlspecialchars($_POST['register_mail']);
+            $username = htmlspecialchars($_POST['register_username']);
+            $password = sha1($_POST['register_password']);
+            $password2 = sha1($_POST['register_password2']);
+            //echo $username; echo $password;
+            $registerSQL = "INSERT INTO users(prenom,nom,email,username,password) VALUES ('$firstname','$name','$mail','$username','$password')";
+            if($bdd->exec($registerSQL)){
+                echo "Données envoyer";
+            } else {
+                echo "données non envoyées";
+            }
+            var_dump($registerSQL);
+            //var_dump($loginInsert);
+            
+        } else {
+            echo "failed";
+        }
+    } else {
+        echo "pas bon";
+    }
+    ?>
 </body>
 
 </html>
