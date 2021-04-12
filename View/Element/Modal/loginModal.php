@@ -34,6 +34,7 @@
             <input id="register_password2" class="w-100" type="password" name="register_password2" placeholder="Confirm password">
           </div>
         </div>
+        <?= $error ?>
         <div class="modal-footer">
           <input id="register_btn_inscrire" type="submit" class="btn btn-success text-center" name="registerForm" value="S'inscrire">
         </div>

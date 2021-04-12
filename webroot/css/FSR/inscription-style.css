@@ -1,0 +1,41 @@
+.card input[name = "login_username"], .card input[name = "login_password"]{
+    border: 0;
+    background: none;
+    text-align: center;
+    border: 2px solid #3268fc;
+    border-radius: 25px;
+    transition: 0.25s;
+    outline: none;
+}
+
+.card input[name = "login_username"]:focus, .card input[name = "login_password"]:focus{
+    border-color: #2ecc71;
+}
+
+.btn-outline-info {
+    border: 0;
+    background: none;
+    text-align: center;
+    border: 2px solid #3268fc;
+    border-radius: 25px;
+    color: #3268fc;
+    transition: 0.25s;
+}
+
+.btn-outline-info:hover {
+    border: 0;
+    background: #3268fc;
+    text-align: center;
+    border: 2px solid #3268fc;
+    border-radius: 25px;
+    color: #fff;
+}
+
+.btn-round-success {
+    border: 0;
+    background: #2ecc71;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    border-radius: 25px;
+    color: #fff;
+}
